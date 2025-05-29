@@ -1,4 +1,4 @@
- import Popup from '../main/components/Popup/Popup';
+ import Popup from '../Popup/Popup';
  
  export default function ImagePopup({ isOpen, onClose, imageUrl }) {
    return (
