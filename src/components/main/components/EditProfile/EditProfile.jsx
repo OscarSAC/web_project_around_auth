@@ -1,9 +1,9 @@
-import Popup from './Popup/Popup';
+import Popup from '../Popup/Popup';
 import { useEffect, useState, useContext } from 'react';
-import CurrentUserContext from '../../../contexts/CurrentUserContext';
-import '../../../blocks/popup.css';
+import CurrentUserContext from '../../../../contexts/CurrentUserContext';
+import '../../../../blocks/popup.css';
 
-export default function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
+export default function EditProfile({isOpen, onClose, onUpdateUser}) {
   const {currentUser} = useContext(CurrentUserContext);
   const [name, setName] = useState(''); 
   const [description, setDescription] = useState(''); 

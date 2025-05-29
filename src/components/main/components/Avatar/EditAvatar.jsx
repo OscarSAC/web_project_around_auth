@@ -1,8 +1,8 @@
-import Popup from './Popup/Popup';
+import Popup from '../Popup/Popup';
 import {useRef, useEffect, useState} from 'react';
-import '../../../blocks/popup.css';
+import '../../../../blocks/popup.css';
 
-export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+export default function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
   if (!isOpen) return null;
 
   const avatarRef = useRef();

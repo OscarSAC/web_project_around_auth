@@ -1,9 +1,9 @@
-import Popup from './Popup/Popup';
+import Popup from '../Popup/Popup';
 import React, {useState, useEffect} from 'react';
-import '../../../blocks/popup.css';
+import '../../../../blocks/popup.css';
 
 
-export default function newCardPopup({ isOpen, onClose, onNewCard }) {
+export default function newCard({ isOpen, onClose, onNewCard }) {
   const [placeName, setPlaceName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [errors, setErrors] = useState({});

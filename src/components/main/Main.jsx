@@ -3,7 +3,7 @@ import profilePic from '../../images/profile_pic.jpg';
 import profileEditImage from '../../images/Vector_lapiz_editar.png';
 import editButtonImage from '../../images/edit_Vector.png';
 import addButtonImage from '../../images/add_vector.png';
-import Card from './card/Card';
+import Card from './components/card/Card';
 import { api } from "../../utils/api";
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import RemoveCard from './components/RemoveCard/RemoveCard';
@@ -17,8 +17,7 @@ const Main = ({
   onOpenEditProfilePopup, 
   onOpenNewPlacePopup, 
   onOpenImagePopup, 
-  onOpenEditAvatarPopup, 
-  onOpenRemovePopup
+  onOpenEditAvatarPopup
   }) => {
     
     const {currentUser} = useContext(CurrentUserContext);
@@ -84,7 +83,7 @@ const Main = ({
           isOpen={!!cardToDelete}
           onClose={() => setCardToDelete(null)}
           onConfirmDelete={() => {
-            onConfirmDelete(cardToDelete);
+             onConfirmDelete(cardToDelete);
             setCardToDelete(null);
           }}
          />

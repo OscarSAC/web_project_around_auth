@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import Header from './header/Header';
 import Main from './main/Main';
 import Footer from './footer/Footer';
-import EditAvatarPopup from './main/components/EditAvatar';
-import EditProfilePopup from './main/components/EditProfile';
-import NewCardPopup from './main/components/NewCard';
+import EditAvatar from './main/components/Avatar/EditAvatar';
+import EditProfile from './main/components/EditProfile/EditProfile';
+import NewCard from './main/components/NewCard/NewCard';
 import ImagePopup from './main/components/ImagePopup/ImagePopup';
-import RemoveCardPopup from './main/components/RemoveCard/RemoveCard';
+import RemoveCard from './main/components/RemoveCard/RemoveCard';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import { api } from "../utils/api";
 
@@ -70,30 +70,29 @@ const handleUpdateAvatar = ({avatar}) => {
 };
 
 async function handleLikeCard(card) {
-     const isLiked = card.isLiked;
-    
-    
-    await api.likeCard(card._id, !isLiked).then((newCard) => {
-        setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+     const isLiked = card.isLiked;  
+     await api.likeCard(card._id, !isLiked).then((newCard) => {
+     setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
     }).catch((error) => console.error(error));
     }
 
-     async function handleCardDelete(card) {
-      console.log("Intentando borrar card:", card);
-      try {
-        await api.deleteCard(card._id);
-        setCards((state) => state.filter((c) => c._id !== card._id));
-      } catch (error) {
-        console.error(error);
-      }
-    }
+async function handleCardDelete(card) {
+      // console.log("Intentando borrar card:", card);
+    await api.deleteCard(card._id)
+    .then(() => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 
-    async function handleAddPlace({name, link}){
+async function handleAddPlace({name, link}){
 
-      const newCard = await api.createCard(name, link);
-      setCards([newCard, ...cards]);
-      handleClosePopup();
-    }
+  const newCard = await api.createCard(name, link);
+    setCards([newCard, ...cards]);
+    handleClosePopup();
+  }
      
 
   return (
@@ -113,21 +112,21 @@ async function handleLikeCard(card) {
         />
         <Footer/>
         {isPopupOpen && popupType === 'editAvatar' && (
-  <EditAvatarPopup isOpen={isPopupOpen} onClose={handleClosePopup} onUpdateAvatar={handleUpdateAvatar} />
+        <EditAvatar isOpen={isPopupOpen} onClose={handleClosePopup} onUpdateAvatar={handleUpdateAvatar} />
         )}
         {isPopupOpen && popupType === 'editProfile' && (
-  <EditProfilePopup isOpen={isPopupOpen} onClose={handleClosePopup} onUpdateUser={handleUpdateUser}/>
+        <EditProfile isOpen={isPopupOpen} onClose={handleClosePopup} onUpdateUser={handleUpdateUser}/>
         )}
         {isPopupOpen && popupType === 'newPlace' && (
-        <NewCardPopup isOpen={isPopupOpen} onClose={handleClosePopup} onNewCard={handleAddPlace} />
+        <NewCard isOpen={isPopupOpen} onClose={handleClosePopup} onNewCard={handleAddPlace} />
         )}      
         {isPopupOpen && popupType === 'imagePopup' && ( 
           <ImagePopup isOpen = {isPopupOpen} onClose={handleClosePopup}
            imageUrl={popupImage}/>
         )}
-        {isPopupOpen && popupType === 'removeCard' && ( 
-          <RemoveCardPopup isOpen = {isPopupOpen} onClose={handleClosePopup}/>
-        )}
+        {/* {isPopupOpen && popupType === 'removeCard' && ( 
+          <RemoveCard isOpen = {isPopupOpen} onClose={handleClosePopup}/>
+        )} */}
         </div>
     </CurrentUserContext.Provider>
   )

@@ -41,7 +41,9 @@ export default function Popup(props) {
           {isImagePopup ? (
             children
           ) : (       
-          <form className="popup__form" onSubmit={onSubmit}>
+          <form className="popup__form" onSubmit={e => {e.preventDefault();
+            if (onSubmit) onSubmit(e);
+          }}>
             <h3 className="popup__container-title">{title}</h3>
             {children}
             

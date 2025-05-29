@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
-import deleteButton from '../../../images/Trash.png';
-import CurrentUserContext from '../../../contexts/CurrentUserContext';
-import "../../../blocks/photo-grid.css";
-import likeInactive from "../../../images/like_Vector.png";
-import likeActive from "../../../images/like_Vector_active.png";
+import deleteButton from '../../../../images/Trash.png';
+import CurrentUserContext from '../../../../contexts/CurrentUserContext';
+import "../../../../blocks/photo-grid.css";
+import likeInactive from "../../../../images/like_Vector.png";
+import likeActive from "../../../../images/like_vector_active.png";
 
 export default function Card({ card, 
   isLiked,
@@ -28,7 +28,7 @@ export default function Card({ card,
     
 
     const handleLikeClick = () => {
-      console.log("Card clicked:", card._id, "isLiked antes:", isLiked);
+      // console.log("Card clicked:", card._id, "isLiked antes:", isLiked);
     // onLikeCard(card._id, !isLiked); 
     onLikeCard(card);
   };
