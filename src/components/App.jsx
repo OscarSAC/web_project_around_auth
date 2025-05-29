@@ -71,8 +71,8 @@ const handleUpdateAvatar = ({avatar}) => {
 
 async function handleLikeCard(card) {
      const isLiked = card.isLiked;  
-     await api.likeCard(card._id, !isLiked).then((newCard) => {
-     setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+     await api.likeCard(card._id, !isLiked).then((NewCard) => {
+     setCards((state) => state.map((currentCard) => currentCard._id === card._id ? NewCard : currentCard));
     }).catch((error) => console.error(error));
     }
 
@@ -89,8 +89,8 @@ async function handleCardDelete(card) {
 
 async function handleAddPlace({name, link}){
 
-  const newCard = await api.createCard(name, link);
-    setCards([newCard, ...cards]);
+  const NewCard = await api.createCard(name, link);
+    setCards([NewCard, ...cards]);
     handleClosePopup();
   }
      
