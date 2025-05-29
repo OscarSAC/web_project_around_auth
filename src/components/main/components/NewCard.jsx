@@ -1,6 +1,6 @@
-import Popup from '../main/components/Popup/Popup';
+import Popup from './Popup/Popup';
 import React, {useState, useEffect} from 'react';
-import '../../blocks/popup.css';
+import '../../../blocks/popup.css';
 
 
 export default function newCardPopup({ isOpen, onClose, onNewCard }) {

@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import Header from './header/Header';
 import Main from './main/Main';
 import Footer from './footer/Footer';
-import EditAvatarPopup from '../components/Avatar/editAvatar';
-import EditProfilePopup from '../components/EditProfile/EditProfile';
-import NewCardPopup from '../components/NewCard/NewCard';
+import EditAvatarPopup from './main/components/EditAvatar';
+import EditProfilePopup from './main/components/EditProfile';
+import NewCardPopup from './main/components/NewCard';
 import ImagePopup from './main/components/ImagePopup/ImagePopup';
 import RemoveCardPopup from './main/components/RemoveCard/RemoveCard';
 import CurrentUserContext from '../contexts/CurrentUserContext';
