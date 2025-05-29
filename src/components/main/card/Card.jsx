@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import deleteButton from '../../../images/Trash.png';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
 import "../../../blocks/photo-grid.css";
 import likeInactive from "../../../images/like_Vector.png";
 import likeActive from "../../../images/like_Vector_active.png";

@@ -7,7 +7,7 @@ import EditProfilePopup from './main/components/EditProfile/EditProfile';
 import NewCardPopup from './main/components/NewCard/NewCard';
 import ImagePopup from './main/components/ImagePopup/ImagePopup';
 import RemoveCardPopup from './main/components/RemoveCard/RemoveCard';
-import CurrentUserContext from './contexts/CurrentUserContext';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 import { api } from "../utils/api";
 
 function App() {

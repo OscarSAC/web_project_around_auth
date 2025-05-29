@@ -5,7 +5,7 @@ import editButtonImage from '../../images/edit_Vector.png';
 import addButtonImage from '../../images/add_vector.png';
 import Card from './card/Card';
 import { api } from "../../utils/api";
-import CurrentUserContext from '../contexts/CurrentUserContext';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import RemoveCard from './components/RemoveCard/RemoveCard';
 
 window.api = api; 
