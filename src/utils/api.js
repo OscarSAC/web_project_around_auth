@@ -1,8 +1,11 @@
+import { getToken } from "./token";
+
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl, headers}) {
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
+
 
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -11,7 +14,12 @@ class Api {
     }).then((res) => {
       if (res.ok) {
         return res.json();
-      }
+      } else if (res.status === 403) {
+      localStorage.removeItem('jwt');
+      return Promise.reject('No autorizado, redirigiendo a login');
+    } else {
+      return Promise.reject(`Error: ${res.status}`);
+    }
     });
   }
   getUserCards() {
@@ -23,7 +31,7 @@ class Api {
         return res.json();
       }
     });
-  }
+  } 
 
   editUserInfo(name, about) {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -97,9 +105,11 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  baseUrl: 'https://around-api.en.tripleten-services.com/v1',
+  
   headers: {
-    authorization: "68d25659-39a7-419d-bdd8-a2efe774d95f",
+    // authorization: "68d25659-39a7-419d-bdd8-a2efe774d95f",
+    authorization: `Bearer ${getToken()}`,
     "Content-type": "application/json",
   },
 });
