@@ -16,10 +16,7 @@ export default function Popup(props) {
       isOpen= false
     } = props;
   
-    console.log("los props", props)
-    console.log('Popup isOpen:', isOpen);
-    // if(!isOpen) 
-    //   return null;
+  
     
     const handleOverlayClick = (e) => {
     if (e.target.classList.contains('popup')) {
@@ -41,7 +38,7 @@ export default function Popup(props) {
     }, [handleEscClose]);
    
     return (
-        // <div className="popup" id="popup" onClick={handleOverlayClick} >
+        
         <div className={`popup ${isOpen ? 'popup_opened' : ''}`} onClick={handleOverlayClick}>
         <div className={`popup__container ${isImagePopup ? 'image-popup__container' : ''}`}>
           <button 

@@ -41,7 +41,7 @@ useEffect(() => {
 
 useEffect(() => {
   const token = getToken();
-console.log("Token al montar App:", token); // 👈
+
   if (!token) return;
  
   auth.checkToken(token)
@@ -58,20 +58,19 @@ console.log("Token al montar App:", token); // 👈
 useEffect(() => {
   const token = getToken();
   if (!isLoggedIn) return;
-console.log("Token usado para obtener cards:", token);
+
   api.getUserCards()
     .then((data) => {
-       console.log("Cards recibidas:", data);
       if (Array.isArray(data)) {
         setCards(data);
       } else {
         console.error("Error al obtener tarjetas:", err);
-        setCards([]); // Fallback seguro
+        setCards([]); 
       }
     })
     .catch((err) => {
       console.log("Error al obtener tarjetas:", err);
-      setCards([]); // También importante aquí
+      setCards([]); 
     });
 }, [isLoggedIn]);
 
@@ -97,18 +96,24 @@ console.log("Token usado para obtener cards:", token);
    const handleLogin = async (email, password) => {
     try {
       const { token } = await auth.authorize(email, password);
-      // console.log('Token completo:', token);
+      
     
       setToken(token);
-      // console.log('Token insetado guardado en localStorage:', getToken());
+      
 
-      const storedToken = getToken();
-    console.log('Token desde localStorage justo después de set:', storedToken);
+    //   const storedToken = getToken();
+    // console.log('Token desde localStorage justo después de set:', storedToken);
 
       setIsLoggedIn(true);
       const userData = await auth.checkToken(token);
       setCurrentUser(userData.data);
-      
+      const userInfoFromCardsApi = await api.getUserInfo();
+    setCurrentUser(userInfoFromCardsApi);
+
+    const cardsData = await api.getUserCards();
+    setCards(cardsData);
+
+
       setTooltip({ open: true, success: true, message: '¡Ingreso exitoso!' });
       setTimeout(() => {
         setTooltip({ open: false, success: false, message: '' });
@@ -201,13 +206,11 @@ async function handleAddPlace({name, link}){
     handleClosePopup();
   }
      
- console.log("Estado isPopupOpen:", isPopupOpen, "Tipo popup:", popupType);
 
   return (
   // <Router>
     <CurrentUserContext.Provider value={{currentUser, handleUpdateUser, handleUpdateAvatar}}>
       <div className="page">
-        {/* <Header userEmail={currentUser?.email} onLogout={handleLogout} /> */}
         <Header
           isLoggedIn={isLoggedIn}
           userEmail={currentUser.email}
@@ -257,24 +260,6 @@ async function handleAddPlace({name, link}){
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-
-
-        {/* {isPopupOpen && popupType === 'editAvatar' && (
-        <EditAvatar isOpen={isPopupOpen} onClose={handleClosePopup} onUpdateAvatar={handleUpdateAvatar} />
-        )}
-        {isPopupOpen && popupType === 'editProfile' && (
-        <EditProfile isOpen={isPopupOpen} onClose={handleClosePopup} onUpdateUser={handleUpdateUser}/>
-        )}
-        {isPopupOpen && popupType === 'newPlace' && (
-        <NewCard isOpen={isPopupOpen} onClose={handleClosePopup} onNewCard={handleAddPlace} />
-        )}      
-        {isPopupOpen && popupType === 'imagePopup' && ( 
-          <ImagePopup isOpen = {isPopupOpen} onClose={handleClosePopup}
-           imageUrl={popupImage}/>
-        )} */}
-        {/* {isPopupOpen && popupType === 'removeCard' && ( 
-          <RemoveCard isOpen = {isPopupOpen} onClose={handleClosePopup}/>
-        )} */}
 
         <EditAvatar
   isOpen={isPopupOpen && popupType === 'editAvatar'}

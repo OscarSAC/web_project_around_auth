@@ -16,7 +16,7 @@ function Register({onRegister, tooltip, setTooltip}) {
 
   return (
     <>
-      <header>{/* Header aquí */}</header>
+      <header></header>
       <main className="register">
         <form onSubmit={handleSubmit} className="register__container">
           <h2 className="register__title">Regístrate</h2>
@@ -41,29 +41,8 @@ function Register({onRegister, tooltip, setTooltip}) {
         <p className="register__redirect">
           ¿Ya eres miembro? <Link to="/signin" style={{ color: 'lightblue' }}>Inicia sesión aquí</Link>
         </p>
-        {/* <div style={{ marginTop: '30px', display: 'flex', gap: '10px' }}>
-    <button onClick={() =>
-      setTooltip({
-        open: true,
-        success: true,
-        message: '¡Correcto! Ya estás registrado.'
-      })
-    }>
-      Probar Popup Exitoso
-    </button>
-
-    <button onClick={() =>
-      setTooltip({
-        open: true,
-        success: false,
-        message: 'Uy, algo salió mal. Por favor, inténtalo de nuevo.'
-      })
-    }>
-      Probar Popup Fallido
-    </button>
-  </div> */}
       </main>
-      <footer>{/* Footer aquí */}</footer>
+      <footer></footer>
        <InfoTooltip
         isOpen={tooltip.open}
         isSuccess={tooltip.success}
