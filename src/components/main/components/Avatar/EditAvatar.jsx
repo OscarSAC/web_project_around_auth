@@ -3,7 +3,7 @@ import {useRef, useEffect, useState} from 'react';
 import '../../../../blocks/popup.css';
 
 export default function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
-  if (!isOpen) return null;
+  
 
   const avatarRef = useRef();
   const [errors, setErrors] = useState({});
@@ -59,7 +59,7 @@ export default function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
     setIsSubmitting(false);
 }
   return (
-    <Popup title="Cambiar foto de perfil" onClose={onClose} onSubmit={handleSubmit} isValid={isValid} buttonText={isSubmitting ? 'Cambiando Avatar...' : 'Cambiar'} isSubmitting={isSubmitting}>
+    <Popup isOpen={isOpen} title="Cambiar foto de perfil" onClose={onClose} onSubmit={handleSubmit} isValid={isValid} buttonText={isSubmitting ? 'Cambiando Avatar...' : 'Cambiar'} isSubmitting={isSubmitting}>
       <label className="popup__label" id="profile-picture">
         <input
           type="url"

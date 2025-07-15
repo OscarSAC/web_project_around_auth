@@ -59,9 +59,9 @@ export default function NewCard ({ isOpen, onClose, onNewCard }) {
     return (touched[fieldName] || value !== '') && errors[fieldName];
   };
 
-  if (!isOpen) return null;
+  // if (!isOpen) return null;
   return (
-     <Popup title="Nuevo Lugar" onClose={onClose} buttonText={isSubmitting? "Creando..." : "Crear"} onSubmit={handleSubmit} isValid={isValid}>          
+     <Popup isOpen={isOpen} title="Nuevo Lugar" onClose={onClose} buttonText={isSubmitting? "Creando..." : "Crear"} onSubmit={handleSubmit} isValid={isValid}>          
               <label className="popup__label" id="place-name">
                 <input
                   type="text"

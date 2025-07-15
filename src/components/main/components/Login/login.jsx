@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../../../utils/api';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import '../../../../blocks/login.css';
 
 
 function Login({onLogin, tooltip, setTooltip}) {
@@ -18,29 +19,32 @@ function Login({onLogin, tooltip, setTooltip}) {
   return (
     <>
       <header>{/* Aquí se mantiene el Header que tienes en App.jsx */}</header>
-      <main style={{ backgroundColor: 'black', height: '80vh', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: '300px', gap: '10px' }}>
+      <main className='login'>
+        <form onSubmit={handleSubmit} className="login__container">
+          <h2 className="login__title">Iniciar Sesión</h2>
           <input
+            className="login__input"
             type="email"
-            placeholder="Email"
+            placeholder="Correo Electrónico"
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
           />
           <input
+           className="login__input"
             type="password"
             placeholder="Contraseña"
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
           />
-          <button type="submit">Iniciar Sesión</button>
+          <button type="submit" className="login__button">Iniciar Sesión</button>
         </form>
-        <p style={{ marginTop: '20px' }}>
-          No eres usuario? <Link to="/signup" style={{ color: 'lightblue' }}>Haz click aquí para registrarte</Link>
+        <p className="login__redirect">
+          ¿No eres usuario? <Link to="/signup" style={{ color: 'lightblue' }}>Haz click aquí para registrarte</Link>
         </p>
       </main>
-      <footer>{/* Aquí se mantiene el Footer que tienes en App.jsx */}</footer>
+      {/* <footer>Aquí se mantiene el Footer que tienes en App.jsx</footer> */}
       <InfoTooltip
         isOpen={tooltip.open}
         isSuccess={tooltip.success}

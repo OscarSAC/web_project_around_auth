@@ -6,11 +6,20 @@ class Api {
     this.headers = headers;
   }
 
+  // _getHeaders() {
+  //    const token = getToken();
+  // console.log("Token leído en _getHeaders:", token); // 👈
+  //   return {
+  //     Authorization: `Bearer ${getToken()}`,
+  //     "Content-Type": "application/json",
+  //   };
+  // }
+
 
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
-      headers: this.headers,
+      headers: this.headers
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -25,7 +34,7 @@ class Api {
   getUserCards() {
     return fetch(`${this.baseUrl}/cards`, {
       method: "GET",
-      headers: this.headers,
+      headers: this.headers
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -68,7 +77,7 @@ class Api {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       // method: isLiked ? "DELETE" : "PUT",
       method: isLiked ? "PUT" : "DELETE",
-      headers: this.headers,
+      headers: this.headers
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -80,7 +89,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this.headers,
+      headers: this.headers
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -107,9 +116,9 @@ class Api {
 export const api = new Api({
   baseUrl: 'https://around-api.en.tripleten-services.com/v1',
   
-  headers: {
-    // authorization: "68d25659-39a7-419d-bdd8-a2efe774d95f",
-    authorization: `Bearer ${getToken()}`,
-    "Content-type": "application/json",
+   headers: {
+    authorization: "68d25659-39a7-419d-bdd8-a2efe774d95f",
+  //   authorization: `Bearer ${getToken()}`,
+     "Content-type": "application/json",
   },
 });

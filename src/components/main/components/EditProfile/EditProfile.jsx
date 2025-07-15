@@ -67,7 +67,7 @@ export default function EditProfile({isOpen, onClose, onUpdateUser}) {
   };
 
   return (
-    <Popup title="Editar Perfil" onClose={onClose} onSubmit={handleSubmit} isValid={isValid} buttonText={isSubmitting ? 'Guardando...' : 'Guardar'}>
+    <Popup isOpen={isOpen} title="Editar Perfil" onClose={onClose} onSubmit={handleSubmit} isValid={isValid} buttonText={isSubmitting ? 'Guardando...' : 'Guardar'}>
            <label className="popup__label" id="profile-name">
               <input
                 type="text"

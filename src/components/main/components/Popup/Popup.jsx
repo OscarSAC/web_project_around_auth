@@ -5,8 +5,21 @@ import { useEffect, useCallback } from 'react';
 
 
 export default function Popup(props) {
-    const {title, children, onClose, isImagePopup = false, onSubmit, isValid = true } = props;
-    
+    const {
+      title, 
+      children, 
+      onClose, 
+      isImagePopup = false, 
+      onSubmit, 
+      isValid = true,
+      isForm= true, 
+      isOpen= false
+    } = props;
+  
+    console.log("los props", props)
+    console.log('Popup isOpen:', isOpen);
+    // if(!isOpen) 
+    //   return null;
     
     const handleOverlayClick = (e) => {
     if (e.target.classList.contains('popup')) {
@@ -28,7 +41,8 @@ export default function Popup(props) {
     }, [handleEscClose]);
    
     return (
-        <div className="popup" id="popup" onClick={handleOverlayClick} >
+        // <div className="popup" id="popup" onClick={handleOverlayClick} >
+        <div className={`popup ${isOpen ? 'popup_opened' : ''}`} onClick={handleOverlayClick}>
         <div className={`popup__container ${isImagePopup ? 'image-popup__container' : ''}`}>
           <button 
           className="popup__close-button" 
@@ -40,7 +54,7 @@ export default function Popup(props) {
           
           {isImagePopup ? (
             children
-          ) : (       
+          ) : isForm ? (       
           <form className="popup__form" onSubmit={e => {e.preventDefault();
             if (onSubmit) onSubmit(e);
           }}>
@@ -54,6 +68,10 @@ export default function Popup(props) {
             {props.buttonText || 'Guardar'}
             </button>
           </form>
+    ) : (
+      <div className="popup__content">
+            {children}
+          </div>
     )}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import '../../../../blocks/register.css';
 
 function Register({onRegister, tooltip, setTooltip}) {
   const [email, setEmail] = useState('');
@@ -16,27 +17,51 @@ function Register({onRegister, tooltip, setTooltip}) {
   return (
     <>
       <header>{/* Header aquí */}</header>
-      <main style={{ backgroundColor: 'black', height: '80vh', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: '300px', gap: '10px' }}>
+      <main className="register">
+        <form onSubmit={handleSubmit} className="register__container">
+          <h2 className="register__title">Regístrate</h2>
           <input
+            className="register__input"
             type="email"
-            placeholder="Email"
+            placeholder="Correo electrónico"
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
           />
           <input
+            className="register__input"
             type="password"
             placeholder="Contraseña"
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
           />
-          <button type="submit">Registrarse</button>
+          <button className="register__button" type="submit">Registrarse</button>
         </form>
-        <p style={{ marginTop: '20px' }}>
-          Ya eres usuario? <Link to="/signin" style={{ color: 'lightblue' }}>Haz click aquí para iniciar sesión</Link>
+        <p className="register__redirect">
+          ¿Ya eres miembro? <Link to="/signin" style={{ color: 'lightblue' }}>Inicia sesión aquí</Link>
         </p>
+        {/* <div style={{ marginTop: '30px', display: 'flex', gap: '10px' }}>
+    <button onClick={() =>
+      setTooltip({
+        open: true,
+        success: true,
+        message: '¡Correcto! Ya estás registrado.'
+      })
+    }>
+      Probar Popup Exitoso
+    </button>
+
+    <button onClick={() =>
+      setTooltip({
+        open: true,
+        success: false,
+        message: 'Uy, algo salió mal. Por favor, inténtalo de nuevo.'
+      })
+    }>
+      Probar Popup Fallido
+    </button>
+  </div> */}
       </main>
       <footer>{/* Footer aquí */}</footer>
        <InfoTooltip

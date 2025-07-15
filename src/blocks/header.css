@@ -1,12 +1,14 @@
 .header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   max-width: 880px;
   max-height: 74px;
   margin-top: 45px;
   border-bottom: 1px solid #545454;
   flex-wrap: wrap;
-  justify-content: left;
+  /* justify-content: left; */
   box-sizing: border-box;
 }
 
@@ -17,16 +19,48 @@
   justify-content: left;
 }
 
+.header__user-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 16px;
+  color: white;
+}
+
+.header__email {
+  white-space: nowrap;
+  font-weight: 500;
+  border: none;
+  padding-bottom: 20px;
+}
+
+.header__logout-btn:hover {
+  background-color: #fff;
+  color: #333;
+  padding-bottom: 20px;
+}
+
+
+.header__logout-btn {
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  padding-bottom: 20px;
+  border: none;
+}
+
 @media screen and (max-width: 599px) {
   .header {
     display: flex;
+     justify-content: space-between;
+  align-items: center;
     width: 100%;
     max-width: 320px;
     max-height: 56px;
     margin-top: 28px;
     border-bottom: 1px solid #545454;
     flex-wrap: wrap;
-    justify-content: left;
+    /* justify-content: left; */
     box-sizing: border-box;
   }
 
@@ -41,13 +75,15 @@
 @media screen and (min-width: 600px) and (max-width: 1024px) {
   .header {
     display: flex;
+     justify-content: space-between;
+  align-items: center;
     width: 100%;
     max-width: 584px;
     max-height: 56px;
     margin-top: 28px;
     border-bottom: 1px solid #545454;
     flex-wrap: wrap;
-    justify-content: left;
+    /* justify-content: left; */
     box-sizing: border-box;
   }
 
